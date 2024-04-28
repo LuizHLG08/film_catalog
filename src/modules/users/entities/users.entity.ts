@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Films } from "src/modules/films/entities/films.entity";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity({name: 'users'})
 export class Users {
@@ -14,6 +15,9 @@ export class Users {
 
     @Column({name: 'password', nullable: false})
     password: string;
+
+    @OneToMany(() => Films, films => films.owner)
+    films?: Films[];
 
     @CreateDateColumn({name: 'created_at'})
     createdAt: string;

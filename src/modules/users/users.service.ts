@@ -36,7 +36,18 @@ export class UsersService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    return await this.usersRepository.update(id, updateUserDto);
+    const updateResult = await this.usersRepository.update({ id }, updateUserDto);
+
+    if (updateResult.affected > 0) {
+        const updatedUser = await this.usersRepository.findOne({where : {id : id}});
+        return {
+          ...updatedUser,
+          password: undefined,
+          updatedAt: new Date()
+        };
+    } else {
+        throw new Error('User not found or not updated.');
+    }
   }
 
   async remove(id: string) {

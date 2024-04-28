@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res, Req } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Response } from 'express';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { AuthRequest } from 'src/auth/models/auth.request';
 
 @Controller('users')
 export class UsersController {
@@ -11,7 +12,7 @@ export class UsersController {
 
   @IsPublic()
   @Post()
-  async create(@Res() res: Response, @Body() createUserDto: CreateUserDto) {
+  async create(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
     return res.status(201).json(await this.usersService.create(createUserDto));
   }
 
@@ -20,14 +21,14 @@ export class UsersController {
     return res.status(200).json(await this.usersService.findAll());
   }
 
-  @Patch(':id')
-  async update(@Res() res: Response, @Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return res.status(200).json(await this.usersService.update(id, updateUserDto));
+  @Patch()
+  async update(@Req() req : AuthRequest, @Body() updateUserDto: UpdateUserDto, @Res() res: Response) {
+    return res.status(200).json(await this.usersService.update(req.user.id, updateUserDto));
   }
 
-  @Delete(':id')
-  async remove(@Res() res: Response, @Param('id') id: string) {
-    await this.usersService.remove(id)
+  @Delete()
+  async remove(@Req() req : AuthRequest, @Res() res: Response) {
+    await this.usersService.remove(req.user.id)
     return res.status(204);
   }
 }

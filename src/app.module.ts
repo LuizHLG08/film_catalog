@@ -5,6 +5,7 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { FilmsModule } from './modules/films/films.module';
 
 
 @Module({
@@ -22,7 +23,8 @@ import { APP_GUARD } from '@nestjs/core';
       entities: [__dirname + '/**/*.entity{.js, .ts}'],
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    FilmsModule
   ],
   controllers: [],
   providers: [{
