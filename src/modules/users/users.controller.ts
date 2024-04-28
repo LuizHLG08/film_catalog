@@ -18,11 +18,6 @@ export class UsersController {
     return res.status(200).json(await this.usersService.findAll());
   }
 
-  @Get('find')
-  async findByEmail(@Res() res: Response, @Body() {email}) {
-    return res.status(200).json(await this.usersService.findByEmail(email));
-  }
-
   @Patch(':id')
   async update(@Res() res: Response, @Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return res.status(200).json(await this.usersService.update(id, updateUserDto));

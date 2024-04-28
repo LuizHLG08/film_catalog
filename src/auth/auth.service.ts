@@ -14,11 +14,11 @@ export class AuthService {
         private readonly jwtService: JwtService
     ) {}
 
-    login(users: Users) : UserToken {
+    login(user: Users) : UserToken {
         const payload : UserPayload = {
-            sub: users.id,
-            email: users.email,
-            name: users.name
+            sub: user.id,
+            email: user.email,
+            name: user.name
         }
 
         const jwtToken = this.jwtService.sign(payload)
