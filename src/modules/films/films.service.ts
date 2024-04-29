@@ -50,7 +50,6 @@ export class FilmsService {
         return {
           ...updatedUser,
           password: undefined,
-          updatedAt: new Date()
         };
     } else {
         throw new Error('User not found or not updated.');

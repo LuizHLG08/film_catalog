@@ -43,7 +43,6 @@ export class UsersService {
         return {
           ...updatedUser,
           password: undefined,
-          updatedAt: new Date()
         };
     } else {
         throw new Error('User not found or not updated.');

@@ -1,5 +1,5 @@
 import { Films } from "src/modules/films/entities/films.entity";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 
 @Entity({name: 'users'})
 export class Users {
@@ -22,6 +22,15 @@ export class Users {
     @CreateDateColumn({name: 'created_at'})
     createdAt: string;
 
-    @CreateDateColumn({name: 'updated_at'})
+    @UpdateDateColumn({name: 'updated_at'})
     updatedAt: string;
+
+    constructor(user?: Partial<Users>) {
+        this.id = user?.id
+        this.name = user?.name
+        this.email = user?.email
+        this.password = user?.password
+        this.createdAt = user?.createdAt
+        this.updatedAt = user?.updatedAt
+    }
 }

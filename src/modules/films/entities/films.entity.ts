@@ -1,5 +1,5 @@
 import { Users } from "src/modules/users/entities/users.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({name: 'films'})
 export class Films {
@@ -22,7 +22,7 @@ export class Films {
     @CreateDateColumn({name: 'created_at'})
     createdAt: string;
 
-    @CreateDateColumn({name: 'updated_at'})
+    @UpdateDateColumn({name: 'updated_at'})
     updatedAt: string;
 
     @Column({name: 'owner_id', nullable: true})
