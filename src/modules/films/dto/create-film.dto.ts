@@ -1,6 +1,4 @@
 import { IsNumber, IsString, MaxLength } from "class-validator";
-import { CreateDateColumn } from "typeorm";
-
 export class CreateFilmDto {
 
     @IsString()
@@ -15,7 +13,5 @@ export class CreateFilmDto {
     @IsString()
     @MaxLength(500)
     description: string;
-
-    
 
 }

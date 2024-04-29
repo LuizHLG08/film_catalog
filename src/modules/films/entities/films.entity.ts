@@ -31,4 +31,15 @@ export class Films {
     @ManyToOne(() => Users, users => users.id)
     @JoinColumn({name: 'owner', referencedColumnName: 'id'})
     owner?: Users;
+
+    constructor(film?: Partial<Films>) {
+        this.id = film?.id
+        this.name = film?.name
+        this.year = film?.year
+        this.price = film?.price
+        this.description = film?.description
+        this.ownerId = film?.ownerId
+        this.createdAt = film?.createdAt
+        this.updatedAt = film?.updatedAt
+    }
 }
