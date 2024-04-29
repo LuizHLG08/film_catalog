@@ -19,7 +19,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Docs - Catálogo de Filmes')
     .setDescription(
-      'Este é um projeto de uma API de um catálogo de filmes, utilizando Nest.js, TypeORM e PostgreSQL como banco de dados.As rotas da API tem autenticação, então para acessar os endpoints é necessário fazer login com um usuário e senha válidos.',
+      'Este é um projeto de uma API de um catálogo de filmes, utilizando Nest.js, TypeORM e PostgreSQL como banco de dados.As rotas da API tem autenticação, então para acessar os endpoints é necessário fazer login com um usuário e senha válidos. A API utiliza um algorítmo avançado de verificação, então o usuário logado só poderá alterar o próprio perfil, ou filmes postados por ele, ainda é possível acessar filmes postados por outros usuários, porém não é possível auterá-los.',
     )
     .addBearerAuth({
       type: 'http',
