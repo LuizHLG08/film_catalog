@@ -18,6 +18,7 @@ import { FilmsModule } from './modules/films/films.module';
       database: process.env.DB_DATABASE,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
+      synchronize: false,
       logging: false,
       entities: [__dirname + '/**/*.entity{.js, .ts}'],
     }),
