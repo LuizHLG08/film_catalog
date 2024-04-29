@@ -14,7 +14,6 @@ export class FilmsController {
   constructor(private readonly filmsService: FilmsService) {}
 
   @Post()
-  @ApiOperation({summary: 'Register new user'})
   @ApiBody({
     type: CreateFilmDto
   })
